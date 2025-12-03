@@ -17,42 +17,39 @@ export function SolutionSection() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container.current,
-        start: "top center",
-        end: "center center",
-        scrub: 1,
+        start: "top top", // Pin trigger
+        end: "+=100%", // Scroll distance
+        pin: true, // Pin the section
+        scrub: 1, // Smooth scrubbing
       },
     });
 
-    // Video opacity transition
-    tl.fromTo(
-      videoRef.current,
-      { opacity: 0 },
-      { opacity: 0.6, duration: 1 }
-    );
+    // Initial State: Video is blurry and transparent
+    gsap.set(videoRef.current, { 
+      filter: "blur(20px)",
+      opacity: 0,
+      scale: 1.1 
+    });
 
-    // Text reveal animation
-    tl.fromTo(
+    // Animation sequence
+    tl.to(videoRef.current, {
+      filter: "blur(0px)",
+      opacity: 0.6,
+      scale: 1,
+      duration: 2,
+      ease: "power2.out"
+    })
+    .fromTo(
       [labelRef.current, headingRef.current],
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.2, duration: 1 },
-      "<"
+      { y: 50, opacity: 0, filter: "blur(10px)" },
+      { y: 0, opacity: 1, filter: "blur(0px)", stagger: 0.2, duration: 1.5, ease: "power2.out" },
+      "-=1" // Overlap with video animation
     );
 
-    // Parallax effect for the video
-    gsap.to(videoRef.current, {
-      yPercent: 20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative min-h-screen w-full overflow-hidden bg-black text-white flex items-center justify-center py-20">
+    <section ref={container} className="relative h-screen w-full overflow-hidden bg-black text-white flex items-center justify-center">
       {/* Video Background - Full Cover */}
       <div className="absolute inset-0 w-full h-full z-0">
         <video
@@ -65,7 +62,7 @@ export function SolutionSection() {
           className="w-full h-full object-cover"
         />
         {/* Red tint overlay to match screenshot */}
-        <div className="absolute inset-0 bg-red-900/30 mix-blend-overlay pointer-events-none" />
+        <div className="absolute inset-0 bg-red-900/20 mix-blend-overlay pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/80 pointer-events-none" />
       </div>
 
