@@ -36,16 +36,8 @@ export default function Home() {
 function HeroSection() {
   return (
     <section className="min-h-screen flex flex-col justify-between pt-24 pb-24 px-4 relative overflow-hidden">
-      {/* Big Title */}
-      <div className="w-full flex justify-center md:justify-start relative z-10">
-        <h1 className="text-[12vw] md:text-[10vw] leading-[0.8] font-bold tracking-tighter uppercase text-center md:text-left mix-blend-difference text-white">
-          DHURUV
-        </h1>
-      </div>
-
-      {/* Glitch Video Area - Restored Tornado */}
-      <div className="flex-grow flex items-center justify-center my-8 md:my-0 relative">
-        <div className="relative w-full max-w-md aspect-[4/5] md:aspect-square overflow-hidden grayscale contrast-125 brightness-90">
+       {/* Full Screen Video Background */}
+       <div className="absolute inset-0 w-full h-full z-0">
            <video 
             src={tornadoVideo} 
             autoPlay
@@ -53,17 +45,23 @@ function HeroSection() {
             muted
             playsInline
             preload="auto"
-            className="w-full h-full object-cover mix-blend-screen opacity-90"
+            className="w-full h-full object-cover grayscale contrast-125 brightness-90 opacity-60"
           />
           {/* Scanline overlay */}
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20 pointer-events-none"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent opacity-0 animate-scan pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 pointer-events-none"></div>
         </div>
+
+      {/* Big Title */}
+      <div className="w-full flex justify-center md:justify-start relative z-10">
+        <h1 className="text-[12vw] md:text-[10vw] leading-[0.8] font-bold tracking-tighter uppercase text-center md:text-left mix-blend-difference text-white">
+          DHURUV
+        </h1>
       </div>
 
       {/* Bottom Text */}
       <div className="space-y-4 relative z-10">
-        <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+        <h3 className="text-xs font-mono uppercase tracking-widest text-white/70">
           Portfolio
         </h3>
         <h2 className="text-3xl md:text-5xl font-sans font-normal leading-tight text-balance max-w-2xl tracking-tight text-white">
