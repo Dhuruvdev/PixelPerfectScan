@@ -7,16 +7,55 @@ interface VideoLoaderProps {
   children: React.ReactNode;
 }
 
+const NAV_LINKS = [
+  { name: "ABOUT", href: "#about" },
+  { name: "WORK", href: "#work" },
+  { name: "CONTACT", href: "#contact" },
+];
+
+function IntroNavbar() {
+  return (
+    <header className="fixed top-0 left-0 right-0 z-[60] flex items-start justify-between px-6 py-6 bg-transparent">
+      <div className="text-xl font-bold tracking-tighter font-sans text-white mix-blend-difference pointer-events-auto cursor-pointer">
+        dhuruv.dev
+      </div>
+      
+      <nav className="flex flex-col items-end gap-2 text-right pointer-events-auto">
+        {NAV_LINKS.map((link) => (
+          <span 
+            key={link.name}
+            className="text-xs md:text-sm font-mono uppercase tracking-widest text-white/80 mix-blend-difference cursor-default"
+          >
+            {link.name}
+          </span>
+        ))}
+      </nav>
+    </header>
+  );
+}
+
 export function VideoLoader({ children }: VideoLoaderProps) {
   const [videoEnded, setVideoEnded] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showSkipButton, setShowSkipButton] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    const handleCanPlay = () => {
+      setVideoLoaded(true);
+    };
+
+    const handleLoadedData = () => {
+      setVideoLoaded(true);
+    };
+
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('loadeddata', handleLoadedData);
 
     const playVideo = async () => {
       try {
@@ -25,13 +64,20 @@ export function VideoLoader({ children }: VideoLoaderProps) {
       } catch (error) {
         console.error('Video autoplay failed:', error);
         setVideoError(true);
-        setTimeout(handleVideoEnd, 1000);
+        setTimeout(handleVideoEnd, 1500);
       }
     };
 
-    playVideo();
+    if (video.readyState >= 3) {
+      setVideoLoaded(true);
+      playVideo();
+    } else {
+      video.addEventListener('canplay', () => playVideo(), { once: true });
+    }
 
     return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('loadeddata', handleLoadedData);
       if (video) {
         video.pause();
       }
@@ -65,6 +111,8 @@ export function VideoLoader({ children }: VideoLoaderProps) {
         transition: 'opacity 500ms ease-out',
       }}
     >
+      <IntroNavbar />
+
       <video
         ref={videoRef}
         className="w-full h-full object-cover"
@@ -75,7 +123,7 @@ export function VideoLoader({ children }: VideoLoaderProps) {
         onError={() => {
           console.error('Video loading error');
           setVideoError(true);
-          setTimeout(handleVideoEnd, 1000);
+          setTimeout(handleVideoEnd, 1500);
         }}
         data-testid="video-loader"
       >
@@ -83,12 +131,12 @@ export function VideoLoader({ children }: VideoLoaderProps) {
       </video>
 
       {showSkipButton && !isTransitioning && (
-        <div className="absolute bottom-8 right-8">
+        <div className="absolute bottom-8 right-8 z-[60]">
           <Button
             onClick={handleSkip}
             variant="outline"
             size="lg"
-            className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+            className="bg-white/10 backdrop-blur-sm border-white/20 text-white"
             data-testid="button-skip-video"
           >
             <SkipForward className="w-4 h-4 mr-2" />
@@ -97,9 +145,12 @@ export function VideoLoader({ children }: VideoLoaderProps) {
         </div>
       )}
 
-      {videoError && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-white text-lg">Loading website...</p>
+      {videoError && !videoLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center z-[55]">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+            <p className="text-white/70 text-sm font-mono uppercase tracking-widest">Loading...</p>
+          </div>
         </div>
       )}
 
