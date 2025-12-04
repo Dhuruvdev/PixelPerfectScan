@@ -39,14 +39,15 @@ function HeroSection() {
        {/* Full Screen Video Background */}
        <div className="absolute inset-0 w-full h-full z-0">
            <video 
-            src={tornadoVideo} 
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
             className="w-full h-full object-cover grayscale contrast-125 brightness-90 opacity-60"
-          />
+          >
+            <source src={tornadoVideo} type="video/mp4" />
+          </video>
           {/* Scanline overlay */}
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20 pointer-events-none"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 pointer-events-none"></div>
