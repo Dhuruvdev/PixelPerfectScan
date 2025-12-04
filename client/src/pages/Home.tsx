@@ -3,7 +3,7 @@ import { Layout } from "@/components/Layout";
 import { SolutionSection } from "@/components/SolutionSection";
 import { NewSection } from "@/components/NewSection";
 import { SectionFive } from "@/components/SectionFive";
-import { ProjectShowcase } from "@/components/ProjectShowcase";
+import { WorkShowcase } from "@/components/WorkShowcase";
 import { motion, useScroll, useTransform } from "framer-motion";
 import glitchImage from "@assets/generated_images/dark_abstract_digital_glitch_art_for_cyber_security_website.png";
 
@@ -24,7 +24,7 @@ export default function Home() {
           <IntroductionSection />
         </div>
         <div id="work">
-          <ProjectShowcase />
+          <WorkShowcase />
           <SolutionSection />
           <NewSection />
           <SectionFive />
