@@ -14,6 +14,7 @@ Preferred communication style: Simple, everyday language.
 
 **Routing**: Wouter for lightweight client-side routing
 - Single-page application with main Home route
+- Project detail pages at `/work/:id` for individual project showcases
 - 404 fallback for undefined routes
 
 **UI Component System**: Shadcn UI with Radix UI primitives
