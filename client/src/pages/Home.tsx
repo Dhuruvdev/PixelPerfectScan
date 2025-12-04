@@ -90,33 +90,55 @@ function HeroSection() {
         </h1>
       </div>
 
-      {/* Credentials Strip - fills the gap */}
+      {/* Stats Section - Inspired by Screenshot */}
       <div className="relative z-10 px-3 md:px-6 flex-1 flex items-center">
-        <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8 py-4 border-t border-b border-white/10">
-          {/* Stats Row */}
-          <div className="flex flex-wrap items-center gap-4 md:gap-8">
-            <div className="flex flex-col">
-              <span className="text-2xl md:text-3xl font-bold text-white" data-testid="stat-years">3+</span>
-              <span className="text-[10px] md:text-xs text-white/50 uppercase tracking-wider">Years Coding</span>
+        <div className="w-full space-y-12 md:space-y-16 py-8">
+          {/* Stat 1 */}
+          <div className="space-y-2">
+            <div className="text-[15vw] md:text-[12vw] lg:text-[10vw] font-bold leading-none tracking-tight text-white" data-testid="stat-years">
+              3+
             </div>
-            <div className="w-px h-8 bg-white/20 hidden md:block"></div>
-            <div className="flex flex-col">
-              <span className="text-2xl md:text-3xl font-bold text-white" data-testid="stat-projects">10+</span>
-              <span className="text-[10px] md:text-xs text-white/50 uppercase tracking-wider">Projects</span>
+            <div className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.2em] text-white/60">
+              ( Years Coding )
             </div>
-            <div className="w-px h-8 bg-white/20 hidden md:block"></div>
-            <div className="flex flex-col">
-              <span className="text-2xl md:text-3xl font-bold text-white" data-testid="stat-focus">100%</span>
-              <span className="text-[10px] md:text-xs text-white/50 uppercase tracking-wider">Passion</span>
+            <div className="text-xs md:text-sm text-white/80 uppercase tracking-wider max-w-md">
+              Building and securing systems
             </div>
           </div>
+
+          {/* Stat 2 */}
+          <div className="space-y-2">
+            <div className="text-[15vw] md:text-[12vw] lg:text-[10vw] font-bold leading-none tracking-tight text-white" data-testid="stat-projects">
+              10+
+            </div>
+            <div className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.2em] text-white/60">
+              ( Projects Completed )
+            </div>
+            <div className="text-xs md:text-sm text-white/80 uppercase tracking-wider max-w-md">
+              From security tools to web applications
+            </div>
+          </div>
+
+          {/* Stat 3 */}
+          <div className="space-y-2">
+            <div className="text-[15vw] md:text-[12vw] lg:text-[10vw] font-bold leading-none tracking-tight text-white" data-testid="stat-focus">
+              100%
+            </div>
+            <div className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.2em] text-white/60">
+              ( Passion & Focus )
+            </div>
+            <div className="text-xs md:text-sm text-white/80 uppercase tracking-wider max-w-md">
+              Dedicated to cybersecurity excellence
+            </div>
+          </div>
+
           {/* Availability */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 pt-4 border-t border-white/10">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span className="text-xs md:text-sm text-white/70">Available for Projects</span>
+            <span className="text-xs md:text-sm font-mono text-white/70 uppercase tracking-wider">Available for Projects</span>
           </div>
         </div>
       </div>
