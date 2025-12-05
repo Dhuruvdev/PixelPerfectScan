@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useLocation } from "wouter";
 import { ChevronLeft, ChevronRight, ExternalLink, Play } from "lucide-react";
 import hauntedParkImg from "@assets/bjZXLD_1764870631952.png";
@@ -297,8 +298,8 @@ export function WorkShowcase() {
         <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
       </section>
 
-      {isNavigating && (
-        <div className="fixed inset-0 z-50 pointer-events-none">
+      {isNavigating && createPortal(
+        <div className="fixed inset-0 z-[100] pointer-events-none">
           <motion.div
             className="absolute inset-0 overflow-hidden bg-black"
             initial={{ 
@@ -344,7 +345,8 @@ export function WorkShowcase() {
               </div>
             </div>
           </motion.div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
