@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
 import Lenis from "lenis";
 import { cn } from "@/lib/utils";
@@ -15,28 +15,46 @@ const NAV_LINKS = [
 
 export function Layout({ children }: LayoutProps) {
   const lenisRef = useRef<Lenis | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      touchMultiplier: 2,
-    });
+    const timer = setTimeout(() => {
+      try {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: "vertical",
+          gestureOrientation: "vertical",
+          smoothWheel: true,
+          touchMultiplier: 2,
+          wrapper: window as any,
+          content: document.documentElement,
+        });
 
-    lenisRef.current = lenis;
+        lenisRef.current = lenis;
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+        const raf = (time: number) => {
+          lenis.raf(time);
+          rafRef.current = requestAnimationFrame(raf);
+        };
 
-    requestAnimationFrame(raf);
+        rafRef.current = requestAnimationFrame(raf);
+        setIsReady(true);
+      } catch (error) {
+        console.error('Lenis initialization error:', error);
+        setIsReady(true);
+      }
+    }, 100);
 
     return () => {
-      lenis.destroy();
+      clearTimeout(timer);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+      }
     };
   }, []);
 
