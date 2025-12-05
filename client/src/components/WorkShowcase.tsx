@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useLocation } from "wouter";
-import { ChevronLeft, ChevronRight, ExternalLink, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, ArrowUpRight } from "lucide-react";
 import hauntedParkImg from "@assets/bjZXLD_1764870631952.png";
 
 export interface Project {
@@ -113,7 +113,7 @@ export function WorkShowcase() {
     <>
       <section 
         ref={containerRef}
-        className="py-16 md:py-24 px-4 md:px-8 bg-black min-h-screen relative overflow-hidden" 
+        className="py-16 md:py-24 px-4 md:px-8 bg-black min-h-screen relative" 
         id="work"
       >
         <div className="max-w-7xl mx-auto">
@@ -124,9 +124,8 @@ export function WorkShowcase() {
             <span className="inline-block text-[9px] md:text-[11px] font-mono uppercase tracking-[0.25em] text-white/50 border border-white/20 px-3 py-1 mb-4">
               Selected Work
             </span>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              <span className="text-white">My </span>
-              <span className="text-cyan-400">Work</span>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white">
+              My Work
             </h2>
           </motion.div>
 
@@ -151,30 +150,30 @@ export function WorkShowcase() {
               aria-label={`View ${currentProject.title} project details`}
               data-testid={`showcase-card-${currentProject.id}`}
             >
-              <div className="relative rounded-lg overflow-hidden border border-white/10">
+              <div className="relative overflow-hidden border border-white/10">
                 <div className="aspect-video relative overflow-hidden">
                   <motion.img
                     src={currentProject.image}
                     alt={currentProject.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                     initial={{ scale: 1.1 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     whileHover={{ scale: 1.05 }}
                   />
                   
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                   
                   <motion.div 
-                    className="absolute inset-0 bg-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   />
 
                   <motion.div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-md border border-cyan-400/30 flex items-center justify-center">
-                      <Play className="w-8 h-8 md:w-10 md:h-10 text-cyan-400 ml-1" />
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                      <ArrowUpRight className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </div>
                   </motion.div>
 
@@ -184,13 +183,13 @@ export function WorkShowcase() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2, duration: 0.5 }}
                     >
-                      <span className="inline-block text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] text-cyan-400 mb-2">
+                      <span className="inline-block text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">
                         {currentProject.category}
                       </span>
-                      <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300" data-testid={`showcase-title-${currentProject.id}`}>
+                      <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-testid={`showcase-title-${currentProject.id}`}>
                         {currentProject.title}
                       </h3>
-                      <p className="text-white/60 text-sm md:text-base max-w-2xl leading-relaxed" data-testid={`showcase-desc-${currentProject.id}`}>
+                      <p className="text-white/50 text-sm md:text-base max-w-2xl leading-relaxed" data-testid={`showcase-desc-${currentProject.id}`}>
                         {currentProject.description}
                       </p>
                       
@@ -198,7 +197,7 @@ export function WorkShowcase() {
                         {currentProject.tools.map((tool) => (
                           <span
                             key={tool}
-                            className="text-[10px] md:text-xs px-3 py-1 bg-cyan-500/10 backdrop-blur-sm border border-cyan-500/20 text-cyan-300/90 rounded-full"
+                            className="text-[10px] md:text-xs px-3 py-1 bg-white/5 backdrop-blur-sm border border-white/10 text-white/70 rounded-full"
                           >
                             {tool}
                           </span>
@@ -215,7 +214,7 @@ export function WorkShowcase() {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <svg viewBox="0 0 100 100" className="w-full h-full text-cyan-500/30">
+                <svg viewBox="0 0 100 100" className="w-full h-full text-white/20">
                   <defs>
                     <path id="circlePath" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
                   </defs>
@@ -232,7 +231,7 @@ export function WorkShowcase() {
               <div className="flex items-center justify-center gap-6 mt-8">
                 <button
                   onClick={prevProject}
-                  className="p-3 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-cyan-400 transition-all duration-300"
+                  className="p-3 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/40 transition-all duration-300"
                   disabled={isTransitioning}
                   data-testid="button-prev-project"
                 >
@@ -252,7 +251,7 @@ export function WorkShowcase() {
                       }}
                       className={`w-2 h-2 rounded-full transition-all duration-300 ${
                         idx === currentIndex 
-                          ? 'bg-cyan-400 w-8' 
+                          ? 'bg-white w-8' 
                           : 'bg-white/30 hover:bg-white/50'
                       }`}
                       data-testid={`button-slide-${idx}`}
@@ -262,7 +261,7 @@ export function WorkShowcase() {
                 
                 <button
                   onClick={nextProject}
-                  className="p-3 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-cyan-400 transition-all duration-300"
+                  className="p-3 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/40 transition-all duration-300"
                   disabled={isTransitioning}
                   data-testid="button-next-project"
                 >
@@ -282,7 +281,7 @@ export function WorkShowcase() {
                   href={currentProject.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-cyan-400 transition-colors"
+                  className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors"
                   onClick={(e) => e.stopPropagation()}
                   data-testid={`link-external-${currentProject.id}`}
                 >
@@ -293,9 +292,6 @@ export function WorkShowcase() {
             )}
           </div>
         </div>
-
-        <div className="absolute top-1/4 -left-32 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
       </section>
 
       {isNavigating && createPortal(
@@ -318,16 +314,25 @@ export function WorkShowcase() {
               autoPlay
               muted
               playsInline
-              className="w-full h-full object-cover grayscale"
+              loop
+              className="w-full h-full object-cover grayscale contrast-125 brightness-75"
               data-testid="video-work-loader"
             />
             
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
             
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
+              <div className="text-center px-4">
+                <motion.span
+                  className="inline-block text-[10px] md:text-xs font-mono uppercase tracking-[0.3em] text-white/50 mb-4"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                >
+                  Loading Project
+                </motion.span>
                 <motion.h2
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4"
+                  className="text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight"
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -340,7 +345,7 @@ export function WorkShowcase() {
                   transition={{ delay: 0.5, duration: 0.4 }}
                   className="flex items-center justify-center"
                 >
-                  <div className="w-12 h-12 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+                  <div className="w-10 h-10 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 </motion.div>
               </div>
             </div>

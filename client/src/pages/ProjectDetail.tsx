@@ -39,7 +39,7 @@ export default function ProjectDetail() {
           <p className="text-white/60 text-lg mb-4">Project not found</p>
           <button
             onClick={() => setLocation("/")}
-            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
+            className="inline-flex items-center gap-2 text-white hover:text-white/70 transition-colors"
             data-testid="button-back-home"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -66,7 +66,7 @@ export default function ProjectDetail() {
           <motion.img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover grayscale"
             initial={{ scale: 1.3 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -97,7 +97,7 @@ export default function ProjectDetail() {
             className="max-w-4xl"
           >
             <motion.span 
-              className="inline-block text-[10px] md:text-xs font-mono uppercase tracking-[0.3em] text-cyan-400 mb-4"
+              className="inline-block text-[10px] md:text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -124,7 +124,7 @@ export default function ProjectDetail() {
               {project.tools.map((tool, idx) => (
                 <motion.span
                   key={tool}
-                  className="text-xs md:text-sm px-4 py-2 bg-cyan-500/10 backdrop-blur-sm border border-cyan-500/20 text-cyan-300/90 rounded-full"
+                  className="text-xs md:text-sm px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 text-white/70 rounded-full"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7 + idx * 0.1, duration: 0.4 }}
@@ -167,7 +167,7 @@ export default function ProjectDetail() {
             className="mb-16"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">About the Project</h2>
-            <p className="text-white/70 text-lg md:text-xl leading-relaxed" data-testid="text-project-description">
+            <p className="text-white/60 text-lg md:text-xl leading-relaxed" data-testid="text-project-description">
               {project.fullDescription || project.description}
             </p>
           </motion.div>
@@ -180,30 +180,30 @@ export default function ProjectDetail() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {project.platform && (
-              <div className="p-6 border border-white/10 rounded-lg">
+              <div className="p-6 border border-white/10">
                 <div className="flex items-center gap-3 mb-3">
-                  <Monitor className="w-5 h-5 text-cyan-400" />
-                  <span className="text-white/50 text-sm uppercase tracking-wider">Platform</span>
+                  <Monitor className="w-5 h-5 text-white/50" />
+                  <span className="text-white/40 text-sm uppercase tracking-wider">Platform</span>
                 </div>
                 <p className="text-white text-lg" data-testid="text-platform">{project.platform}</p>
               </div>
             )}
             
             {project.downloadSize && (
-              <div className="p-6 border border-white/10 rounded-lg">
+              <div className="p-6 border border-white/10">
                 <div className="flex items-center gap-3 mb-3">
-                  <FileArchive className="w-5 h-5 text-cyan-400" />
-                  <span className="text-white/50 text-sm uppercase tracking-wider">Size</span>
+                  <FileArchive className="w-5 h-5 text-white/50" />
+                  <span className="text-white/40 text-sm uppercase tracking-wider">Size</span>
                 </div>
                 <p className="text-white text-lg" data-testid="text-size">{project.downloadSize}</p>
               </div>
             )}
             
             {project.releaseDate && (
-              <div className="p-6 border border-white/10 rounded-lg">
+              <div className="p-6 border border-white/10">
                 <div className="flex items-center gap-3 mb-3">
-                  <Calendar className="w-5 h-5 text-cyan-400" />
-                  <span className="text-white/50 text-sm uppercase tracking-wider">Released</span>
+                  <Calendar className="w-5 h-5 text-white/50" />
+                  <span className="text-white/40 text-sm uppercase tracking-wider">Released</span>
                 </div>
                 <p className="text-white text-lg" data-testid="text-release">{project.releaseDate}</p>
               </div>
@@ -223,16 +223,16 @@ export default function ProjectDetail() {
                 {project.features.map((feature, idx) => (
                   <motion.div
                     key={idx}
-                    className="flex items-start gap-4 p-4 border border-white/10 rounded-lg"
+                    className="flex items-start gap-4 p-4 border border-white/10"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 * idx, duration: 0.5 }}
                   >
-                    <div className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
-                      <span className="text-cyan-400 text-sm font-bold">{idx + 1}</span>
+                    <div className="w-8 h-8 bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
+                      <span className="text-white/70 text-sm font-bold">{idx + 1}</span>
                     </div>
-                    <p className="text-white/80 text-lg" data-testid={`text-feature-${idx}`}>{feature}</p>
+                    <p className="text-white/70 text-lg" data-testid={`text-feature-${idx}`}>{feature}</p>
                   </motion.div>
                 ))}
               </div>
@@ -251,7 +251,7 @@ export default function ProjectDetail() {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-lg transition-colors duration-300"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-semibold transition-colors duration-300 hover:bg-white/90"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="button-download"
@@ -264,7 +264,7 @@ export default function ProjectDetail() {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/20 text-white hover:bg-white/10 font-semibold rounded-lg transition-colors duration-300"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/20 text-white hover:bg-white/10 font-semibold transition-colors duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="button-view-itch"
@@ -282,10 +282,10 @@ export default function ProjectDetail() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <div className="max-w-4xl mx-auto px-6 md:px-8 flex items-center justify-between">
+          <div className="max-w-4xl mx-auto px-6 md:px-8 flex items-center justify-between gap-4">
             <button
               onClick={() => setLocation("/")}
-              className="inline-flex items-center gap-2 text-white/60 hover:text-cyan-400 transition-colors"
+              className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
               data-testid="button-back-bottom"
             >
               <ArrowLeft className="w-4 h-4" />
