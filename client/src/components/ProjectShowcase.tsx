@@ -57,7 +57,7 @@ export function ProjectShowcase() {
           </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
             <span className="text-white">My </span>
-            <span className="text-purple-500">Work</span>
+            <span className="text-cyan-400">Work</span>
           </h2>
         </div>
 
@@ -92,7 +92,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 p-4 md:p-6 border border-white/10 rounded-md hover-elevate transition-all duration-300">
         {/* Number */}
         <div className="flex-shrink-0">
-          <span className="text-5xl md:text-7xl font-bold text-white/10 group-hover:text-purple-500/30 transition-colors duration-300">
+          <span className="text-5xl md:text-7xl font-bold text-white/10 group-hover:text-cyan-500/30 transition-colors duration-300">
             {String(project.id).padStart(2, '0')}
           </span>
         </div>
@@ -101,7 +101,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="flex-1 space-y-3">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
             <div>
-              <h3 className="text-xl md:text-2xl font-semibold text-white group-hover:text-purple-400 transition-colors duration-300" data-testid={`project-title-${project.id}`}>
+              <h3 className="text-xl md:text-2xl font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300" data-testid={`project-title-${project.id}`}>
                 {project.title}
               </h3>
               <p className="text-sm text-white/50 uppercase tracking-wider">{project.category}</p>
@@ -140,7 +140,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
 
         {/* Preview Image Placeholder */}
-        <div className="hidden lg:block flex-shrink-0 w-48 h-32 bg-gradient-to-br from-purple-500/20 to-transparent border border-white/10 rounded-md overflow-hidden">
+        <div className="hidden lg:block flex-shrink-0 w-48 h-32 bg-gradient-to-br from-cyan-500/20 to-transparent border border-white/10 rounded-md overflow-hidden">
           <div className="w-full h-full flex items-center justify-center text-white/20">
             <span className="text-xs font-mono">Preview</span>
           </div>

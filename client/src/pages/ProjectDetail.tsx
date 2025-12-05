@@ -39,7 +39,7 @@ export default function ProjectDetail() {
           <p className="text-white/60 text-lg mb-4">Project not found</p>
           <button
             onClick={() => setLocation("/")}
-            className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
             data-testid="button-back-home"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -97,7 +97,7 @@ export default function ProjectDetail() {
             className="max-w-4xl"
           >
             <motion.span 
-              className="inline-block text-[10px] md:text-xs font-mono uppercase tracking-[0.3em] text-purple-400 mb-4"
+              className="inline-block text-[10px] md:text-xs font-mono uppercase tracking-[0.3em] text-cyan-400 mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -124,7 +124,7 @@ export default function ProjectDetail() {
               {project.tools.map((tool, idx) => (
                 <motion.span
                   key={tool}
-                  className="text-xs md:text-sm px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/10 text-white/90 rounded-full"
+                  className="text-xs md:text-sm px-4 py-2 bg-cyan-500/10 backdrop-blur-sm border border-cyan-500/20 text-cyan-300/90 rounded-full"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7 + idx * 0.1, duration: 0.4 }}
@@ -182,7 +182,7 @@ export default function ProjectDetail() {
             {project.platform && (
               <div className="p-6 border border-white/10 rounded-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <Monitor className="w-5 h-5 text-purple-400" />
+                  <Monitor className="w-5 h-5 text-cyan-400" />
                   <span className="text-white/50 text-sm uppercase tracking-wider">Platform</span>
                 </div>
                 <p className="text-white text-lg" data-testid="text-platform">{project.platform}</p>
@@ -192,7 +192,7 @@ export default function ProjectDetail() {
             {project.downloadSize && (
               <div className="p-6 border border-white/10 rounded-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <FileArchive className="w-5 h-5 text-purple-400" />
+                  <FileArchive className="w-5 h-5 text-cyan-400" />
                   <span className="text-white/50 text-sm uppercase tracking-wider">Size</span>
                 </div>
                 <p className="text-white text-lg" data-testid="text-size">{project.downloadSize}</p>
@@ -202,7 +202,7 @@ export default function ProjectDetail() {
             {project.releaseDate && (
               <div className="p-6 border border-white/10 rounded-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <Calendar className="w-5 h-5 text-purple-400" />
+                  <Calendar className="w-5 h-5 text-cyan-400" />
                   <span className="text-white/50 text-sm uppercase tracking-wider">Released</span>
                 </div>
                 <p className="text-white text-lg" data-testid="text-release">{project.releaseDate}</p>
@@ -229,8 +229,8 @@ export default function ProjectDetail() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 * idx, duration: 0.5 }}
                   >
-                    <div className="w-8 h-8 rounded-full bg-purple-500/20 border border-purple-500/30 flex items-center justify-center flex-shrink-0">
-                      <span className="text-purple-400 text-sm font-bold">{idx + 1}</span>
+                    <div className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+                      <span className="text-cyan-400 text-sm font-bold">{idx + 1}</span>
                     </div>
                     <p className="text-white/80 text-lg" data-testid={`text-feature-${idx}`}>{feature}</p>
                   </motion.div>
@@ -251,7 +251,7 @@ export default function ProjectDetail() {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold rounded-lg transition-colors duration-300"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-lg transition-colors duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="button-download"
@@ -285,7 +285,7 @@ export default function ProjectDetail() {
           <div className="max-w-4xl mx-auto px-6 md:px-8 flex items-center justify-between">
             <button
               onClick={() => setLocation("/")}
-              className="inline-flex items-center gap-2 text-white/60 hover:text-purple-400 transition-colors"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-cyan-400 transition-colors"
               data-testid="button-back-bottom"
             >
               <ArrowLeft className="w-4 h-4" />
